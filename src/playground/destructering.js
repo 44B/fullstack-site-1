@@ -1,3 +1,4 @@
+//Object destructering
 const person = {
     firstName: 'Maher',
     age: 23,
@@ -27,3 +28,7 @@ console.log(`The book, ${title}, was written by ${author}.`);
 const { name = 'Self-Published' } = book.publisher;
 console.log(`The publisher of such book was ${name}.`);
 
+//Array destructering
+const item = ['Hazelnut Iced Coffee', '$1.50', '$2.00', '$4.00'];
+const [drink, , small] = item;
+console.log(`A ${drink} costs at around ${small}.`);
