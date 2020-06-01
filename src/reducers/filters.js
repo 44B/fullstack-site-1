@@ -3,7 +3,7 @@ const filtersReducerDefaultState = {
     sortBy: 'date',
     startDate: 'undefined',
     endDate: 'undefined'
-}
+};
 
 export default (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
