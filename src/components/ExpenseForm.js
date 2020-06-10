@@ -3,6 +3,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
+import { createStore } from 'redux';
 
 export default class ExpenseForm extends React.Component {
     state = {
@@ -19,7 +20,7 @@ export default class ExpenseForm extends React.Component {
     };
     onAmountChange = (e) => {
         const amount = e.target.value;
-        if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+        if (!amount || amount.match(/^\d*(\.\d{0,2})?$/)) {
             this.setState(() => ({ amount }));
         }
     };
@@ -29,16 +30,17 @@ export default class ExpenseForm extends React.Component {
     };
     
     onDateChange = (createdAt) => {
-        this.setState(() => ({ createdAt }));
+        if (createAt) {
+            this.setState(() => ({ createdAt }));
+        }
     };
     onFocusChange = ({ focused }) => {
         this.setState(() => ({ calanderFocused: focused }));
     };
-
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <input 
                         type="text"
                         placeholder="Description"
