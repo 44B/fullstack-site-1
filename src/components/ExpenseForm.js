@@ -3,16 +3,20 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import { createStore } from 'redux';
 
 export default class ExpenseForm extends React.Component {
-    state = {
-        description: '',
-        amount: '',
-        note: '',
-        createdAt: moment(),
-        calanderFocused: false
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            description: props.expense ? props.expense.description : '',
+            amount: props.expense ? (props.expense.amount / 100).toString() : '',
+            note: props.expense ? props.expense.note : '',
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+            calanderFocused: false,
+            error: ''
+        };
+    }
 
     onDescriptionChange = (e) => {
         const description = e.target.value;
